@@ -5,16 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lottie Animation Example</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
+<style>
+    .swal2-confirm {
+        border: 0;
+        border-radius: .25em;
+        background: initial;
+        background-color: #7066e0;
+        color: #fff;
+        font-size: 1em;
+        /* width: 100px; */
+        padding: .7rem 3rem;
+    }
+</style>
+
 <body>
-    <!-- Embedding Lottie animation -->
-    <lottie-player
-        src="https://assets5.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json"
-        background="transparent" speed="1" loop autoplay style="width: 300px;">
-    </lottie-player>
+
+    <button id="button">Alert</button>
+    <button id="error">Alert</button>
+
 </body>
 
 </html>
+
+
+<script>
+    const title = 'Congratulationsd';
+    const text = 'You clicked the button.';
+    const image = '<dotlottie-player src="https://lottie.host/b6691279-8cbb-4dd7-a6e0-df3fb4fbd7d1/aZF7vU1aX4.json" background="transparent" speed="1.5" style="width: 130px; height: 130px; margin-bottom: 0;" loop autoplay></dotlottie-player>';
+
+    document.getElementById('button').addEventListener('click', () => {
+        Swal.fire({
+            html: ` <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0;">
+                ${image}  
+                <h2 class="swal2-title" id="swal2-title" style="display: block;">${title}</h2>
+            <p style="margin-bottom: 0;">${text}</p>
+            </div>`,
+        });
+    })
+
+    document.getElementById('error').addEventListener('click', () => {
+        Swal.fire({
+            title: "Congratulation !",
+            text: "You clicked the button.",
+            icon: "error"
+        });
+    })
+
+
+
+</script>
