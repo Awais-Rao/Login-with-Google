@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery UI Range Selector</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+    .range-container {
+        width: 80%;
+        margin: 50px auto;
+    }
+    #slider-range {
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<div class="range-container">
+    <label for="price-range">Price Range:</label>
+    <input type="text" id="price-range" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</div>
+
+<div id="slider-range"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        // Initialize jQuery UI slider
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [ 200, 800 ], // Initial values for the handles
+            slide: function( event, ui ) {
+                $("#price-range").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
+            }
+        });
+        // Display initial values on page load
+        $("#price-range").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+    });
+</script>
+
+</body>
+</html>
